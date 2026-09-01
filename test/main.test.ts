@@ -13,6 +13,33 @@ type PersonInput = tinyhand.Wrap<'name', PersonOptions>
 test('wraps a shorthand value', () => {
   expect(tinyhand('name', 'Ada')).toEqual({name: 'Ada'})
 })
+test('wraps a shorthand value under multiple keys', () => {
+  const result: {
+    displayName: string
+    name: string
+  } = tinyhand(['name', 'displayName'], 'Ada')
+  expect(result).toEqual({
+    displayName: 'Ada',
+    name: 'Ada',
+  })
+})
+test('returns multiply expanded options unchanged', () => {
+  const input = {
+    displayName: 'Ada Lovelace',
+    name: 'Ada',
+  }
+  expect(tinyhand(['name', 'displayName'], input)).toBe(input)
+})
+test('requires every array key to recognize expanded options', () => {
+  const input = {name: 'Ada'}
+  expect(tinyhand(['name', 'displayName'], input)).toEqual({
+    displayName: input,
+    name: input,
+  })
+})
+test('supports an empty key array', () => {
+  expect(tinyhand([], 'Ada')).toEqual({})
+})
 test('returns expanded options unchanged', () => {
   const input: PersonOptions = {
     age: 36,
