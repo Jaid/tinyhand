@@ -2,6 +2,7 @@
   "name": "tinyhand",
   "version": "0.1.0",
   "type": "module",
+  "description": "shorthand unroller to allow arguments to be a single entry of the parameter’s object type",
   "funding": "https://github.com/sponsors/Jaid",
   "license": "MIT",
   "repository": {
